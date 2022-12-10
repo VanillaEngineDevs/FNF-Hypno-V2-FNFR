@@ -140,6 +140,52 @@ function love.load()
 	cutscene = require "modules.cutscene"
 	input = require "input"
 
+	unlockedCharacters = {
+		false,  --1  hypno safety lullaby
+		false,  --2  hypno but his head flying wtf
+		false,  --3  hypno but he ate mcdonald
+		false,  --4  gold haha funny monochrome song
+		false,  --5  gold but he looks like the child locked in my chest freezer
+		false,  --6  red but he dead idfk
+		false,  --7  literally pikachu
+		false,  --8  silver (idek who this is i think the insomnia dude)
+		false,  --9  feraligatr this dudes name looks like nintendo hit a character limit 💀
+		false,  --10 missingno
+		false,  --11 how tf you let them bury you like bro just dont let them bury you wtf
+		false,  --12 S!3V3N  no idea what this is supposed to say
+		false,  --13 glitchy red 
+		false,  --14 disabled
+		false,  --15 ponyta
+		false,  --16 bell dude
+		false,  --17 purin  (ch wants to fuck this one)
+		false,  --18 nurse joy     how tf your name have "joy" in it and then you hang yourself
+		false,  --19 shinto
+		false,  --20 grey
+		false,  --21 shitno
+		false,  --22 hypno pasta night    his bowtie is adorable :)
+		false,  --23 sonic lmao
+		false,  --24 mario lmao
+		version = 1
+	}
+
+	function saveCharacters()
+		local file = love.filesystem.newFile("characters.unlocked")
+		file:open("w")
+		file:write(lume.serialize({unlockedCharacters = unlockedCharacters}))
+		file:close()
+	end
+	function loadCharacters()
+		local file = love.filesystem.newFile("characters.unlocked")
+		if file:open("r") then
+			local data = file:read()
+			file:close()
+			local success, result = pcall(lume.deserialize, data)
+			if success then
+				unlockedCharacters = result.unlockedCharacters
+			end
+		end
+	end
+
 	music = {
 		waveAudio:newSource("songs/misc/menu.ogg", "stream"),
 		--love.audio.newSource("songs/misc/menu.ogg", "stream"),
@@ -195,6 +241,23 @@ function love.load()
 	menuChooseFreeplay = require "states.menu.menuChooseFreeplay"
 	menuSettings = require "states.menu.menuSettings"
 	menuCredits = require "states.menu.menuCredits"
+	pokedex = require "states.pokedex"
+
+	missingnoWeekWow = require "weeks.missingno"
+
+	-- Load weeks
+	weeks = require "states.weeks.weeks"
+	dtWeek = require "states.weeks.dtWeek"
+	weeksPur = require "states.weeks.weeksPur"
+	weeksMono = require "states.weeks.weeksMono"
+	weeksMissingno = require "states.weeks.missingno"
+	weeksBrimBF = require "states.weeks.weeksBrimbf"
+	weeksBrimEnemy = require "states.weeks.weeksBrimEnemy"
+	weeksPasta1 = require "states.weeks.pastaWeek1"
+	weeksPasta2 = require "states.weeks.pastaWeek2"
+	weeksPasta3 = require "states.weeks.pastaWeek3"
+	weeksFrost = require "states.weeks.weekFrost"
+	weeksShitno = require "states.weeks.weeksShitno"
 
 	gjlogin = require "states.gjlogin"
 
@@ -227,14 +290,15 @@ function love.load()
 
 	-- Load week data
 	weekData = {
-		require "weeks.tutorial",
-		require "weeks.week1",
-		require "weeks.week2",
-		require "weeks.week3",
-		require "weeks.week4",
-		require "weeks.week5",
-		require "weeks.week6",
-		require "weeks.week7",
+		require "weeks.hypno",
+		require "weeks.purin",
+		require "weeks.deathtoll",
+		require "weeks.monochrome",
+		require "states.wowpokemon",
+		require "weeks.brimstone",
+		require "states.characterSelect",
+		require "weeks.frostbite",
+		require "weeks.shitno",
 	}
 	weekDesc = { -- Add your week description here
 		"LEARN TO FUNK",
@@ -248,65 +312,59 @@ function love.load()
 	}
 	weekMeta = { -- Add/remove weeks here
 		{
-			"Tutorial",
+			"Hypno",
 			{
-				"Tutorial"
+				"Safety Lullaby",
+				"Left Unchecked",
+				"Lost Cause"
 			}
 		},
 		{
-			"Week 1",
+			"Purin",
 			{
-				"Bopeebo",
-				"Fresh",
-				"Dadbattle"
+				"Purin"
 			}
 		},
 		{
-			"Week 2",
+			"Death Toll",
 			{
-				"Spookeez",
-				"South",
-				"Monster"
+				"Death Toll"
 			}
 		},
 		{
-			"Week 3",
+			"Monochrome",
 			{
-				"Pico",
-				"Philly Nice",
-				"Blammed"
+				"Monochrome"
 			}
 		},
 		{
-			"Week 4",
+			"Missingno",
 			{
-				"Satin Panties",
-				"High",
-				"M.I.L.F"
+				"Missingno"
 			}
 		},
 		{
-			"Week 5",
+			"Brimstone",
 			{
-				"Cocoa",
-				"Eggnog",
-				"Winter Horrorland"
+				"Brimstone"
 			}
 		},
 		{
-			"Week 6",
+			"Pasta Night",
 			{
-				"Senpai",
-				"Roses",
-				"Thorns"
-			},
+				"Pasta Night"
+			}
 		},
 		{
-			"Week 7",
+			"Frostbite (we are getting the order perfect here)",
 			{
-				"Ugh",
-				"Guns",
-				"Stress"
+				"Frostbite"
+			}
+		},
+		{
+			"Shitno",
+			{
+				"Shitno"
 			}
 		}
 	}
@@ -364,7 +422,11 @@ function love.load()
 	spriteTimers = {
 		0, -- Girlfriend
 		0, -- Enemy
-		0 -- Boyfriend
+		0, -- Boyfriend
+		0, -- enemy 2
+		0, -- enemy 3
+		0, -- enemy 4
+		0, -- missingno
 	}
 
 	storyMode = false
@@ -507,3 +569,16 @@ function love.quit()
 	saveAchivementsProgress()
 	saveSettings()
 end
+
+
+--the funny test push 
+
+-- god i love cock so much
+
+-- especially when its really fucking hot cock
+
+-- i love cock in my mouth
+
+-- if you dont agree then you are not normal
+
+-- fried chicken is good
