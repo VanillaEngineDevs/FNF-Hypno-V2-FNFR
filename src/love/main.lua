@@ -119,6 +119,7 @@ function love.load()
 	xml = require "lib.xml"
 	Object = require "lib.classic"
 	waveAudio = require "lib.wave"
+	moonshine = require "lib.moonshine"
 
 	if love.filesystem.getInfo("gjkeys.lua") then
 		require "gjkeys"
