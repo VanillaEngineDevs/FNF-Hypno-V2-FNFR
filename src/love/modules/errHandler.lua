@@ -10,7 +10,7 @@ Vanilla Engine crashed with the following error:
 		local titles = {"Oh no :(", "Uh oh...", "Uh... Seems like the game crashed.", "The game crashed!", "Yep, it crashed."}
 		local full_error = debug.traceback(error_message or "")
 		local message = string.format(dialog_message, full_error)
-		local buttons = {"Report Error", "No thanks"}
+		local buttons = {"Report Error", "Copy Error", "No thanks"}
 
 		local selected = love.window.showMessageBox("An Error Has Occurred", message, buttons)
 
@@ -42,6 +42,8 @@ Edition: %s
 			local subject = string.format("Crash in Vanilla Engine %s", __VERSION__)
 			local url = string.format("https://github.com/VanillaEngineDevs/Vanilla-Engine/issues/new?title=%s&body=%s", subject, issuebody)
 			love.system.openURL(url)
+		elseif selected == 2 then
+			love.system.setClipboardText(full_error)
 		end
 	end
 end
