@@ -57,6 +57,9 @@ return {
 
 		healthBarColorEnemy = {175,102,206}
 
+		enemy.colours = {175,102,206}		
+		boyfriend.colours = {183,216,85}
+
 		enemyIcon:animate("daddy dearest", false)
 
 		--pikachuSpawn:animate("anim", true)
@@ -69,8 +72,8 @@ return {
 
 	load = function(self)
 		weeksFrost:load()
-		inst = love.audio.newSource("songs/frostbite/Inst.ogg", "stream")
-		voices = love.audio.newSource("songs/frostbite/Voices.ogg", "stream")
+		inst = waveAudio:newSource("songs/frostbite/Inst.ogg", "stream")
+		voices = waveAudio:newSource("songs/frostbite/Voices.ogg", "stream")
 		self:initUI()
 		weeksFrost:setupCountdown()
 
@@ -86,7 +89,7 @@ return {
 
 	initUI = function(self)
 		weeksFrost:initUI()
-		weeksFrost:generateNotes("songs/purin/chart.json")
+		weeksFrost:generateNotes("songs/frostbite/chart.json")
 	end,
 
 	update = function(self, dt)
