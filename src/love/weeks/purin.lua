@@ -31,12 +31,15 @@ return {
 		song = songNum
 		difficulty = songAppend
 
-		healthBarColorEnemy = {175,102,206}		
+		
 
 		enemyIcon:animate("daddy dearest", false)
 
 		boyfriend = love.filesystem.load("sprites/characters/Full_pico_purin.lua")()
 		enemy = love.filesystem.load("sprites/characters/jigglyassets.lua")()
+
+		enemy.colours = {175,102,206}		
+		boyfriend.colours = {183,216,85}
 
 		enemy.sizeX, enemy.sizeY = 0.6, 0.6
 
@@ -81,8 +84,8 @@ return {
 	load = function(self)
 		weeksPur:load()
 
-		inst = love.audio.newSource("songs/purin/inst.ogg", "stream")
-		voices = love.audio.newSource("songs/purin/voices.ogg", "stream")
+		inst = waveAudio:newSource("songs/purin/inst.ogg", "stream")
+		voices = waveAudio:newSource("songs/purin/voices.ogg", "stream")
 
 		self:initUI()
 
@@ -92,7 +95,7 @@ return {
 	initUI = function(self)
 		weeksPur:initUI()
 
-		weeksPur:generateNotes(love.filesystem.load("songs/purin/purin-hard.lua")())
+		weeksPur:generateNotes("songs/purin/purin-hard.json")
 
 		voices:seek(50)
 		inst:seek(50)

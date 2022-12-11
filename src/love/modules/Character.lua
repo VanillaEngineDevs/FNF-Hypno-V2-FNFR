@@ -132,30 +132,12 @@ function character.girlfriend(x, y, isEnemy)
         curEnemy = "girlfriend"
     end
     local char = sprite(x or 0, y or 0)
-    char:setFrames(paths.getSparrowFrames("GF_assets"))
-    char:addAnimByPrefix("idle", "GF Dancing Beat0", 24, false)
-    char:addAnimByPrefix("sad", "gf sad", 24, false)
-    char:addAnimByPrefix("fear", "GF FEAR ", 24, false)
-    char:addAnimByPrefix("cheer", "GF Cheer", 24, false)
+    char:setFrames(paths.getSparrowFrames("luigi"))
+    char:addAnimByPrefix("idle", "luigi idle", 24, false)
 
-    char:addAnimByPrefix("left", "GF left note", 24, false)
-    char:addAnimByPrefix("right", "GF Right Note", 24, false)
-    char:addAnimByPrefix("up", "GF Up Note", 24, false)
-    char:addAnimByPrefix("down", "GF Down Note", 24, false)
-
-    char:addOffset("idle",  0, 0    )
-    char:addOffset("sad",  -2, -21  )
-    char:addOffset("fear",  -2, -17 )
-    char:addOffset("cheer",  3, 0   )
-
-    char:addOffset("left",  0, -19  )
-    char:addOffset("right", 0, -20  )
-    char:addOffset("up",    0, 4    )
-    char:addOffset("down",  0, -20  )
+    char:addOffset("idle")
 
     char:animate("idle", false)
-
-    char.colours = {165,0,77}
 
     return char
 end
