@@ -96,9 +96,6 @@ return {
 		weeksPur:initUI()
 
 		weeksPur:generateNotes("songs/purin/purin-hard.json")
-
-		voices:seek(50)
-		inst:seek(50)
 	end,
 
 	update = function(self, dt)
