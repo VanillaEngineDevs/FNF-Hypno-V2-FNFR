@@ -30,6 +30,10 @@ return {
 		enemyIcon:animate("daddy dearest", false)
 		boyfriend:animate("coldidle", false)
 
+		enemy.colours = {175,102,206}		
+		boyfriend.colours = {183,216,85}
+
+
 
 		self:load()
 
@@ -37,8 +41,8 @@ return {
 
 	load = function(self)
 		weeksShitno:load()
-		inst = love.audio.newSource("songs/shitno/Inst.ogg", "stream")
-		voices = love.audio.newSource("songs/shitno/Voices.ogg", "stream")
+		inst = waveAudio:newSource("songs/shitno/Inst.ogg", "stream")
+		voices = waveAudio:newSource("songs/shitno/Voices.ogg", "stream")
 		self:initUI()
 		weeksShitno:setupCountdown()
 
@@ -51,7 +55,7 @@ return {
 
 	initUI = function(self)
 		weeksShitno:initUI()
-		weeksShitno:generateNotes(love.filesystem.load("songs/shitno/chart.lua")())
+		weeksShitno:generateNotes("songs/shitno/chart.json")
 	end,
 
 	update = function(self, dt)

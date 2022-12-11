@@ -73,6 +73,10 @@ return {
         gengarEnter.x, gengarEnter.y = 80, -40
         whitehand.x, whitehand.y = enemy4.x, enemy4.y
 
+        enemy.colours = {175,102,206}		
+		boyfriend.colours = {183,216,85}
+
+
         cum = {0}
 
         grayscale = {0}
@@ -106,8 +110,8 @@ return {
 	load = function(self)
 		weeksBrimBF:load()
 
-		inst = love.audio.newSource("songs/brimstone/Inst.ogg", "stream")
-		voices = love.audio.newSource("songs/brimstone/Voices.ogg", "stream")
+		inst = waveAudio:newSource("songs/brimstone/Inst.ogg", "stream")
+		voices = waveAudio:newSource("songs/brimstone/Voices.ogg", "stream")
 
 		self:initUI()
 
@@ -145,8 +149,8 @@ return {
 		weeksBrimBF:pixelInitUI()
         weeksBrimEnemy:pixelInitUI()
 
-		weeksBrimBF:generateNotes(love.filesystem.load("songs/brimstone/hard.lua")())
-        weeksBrimEnemy:generateNotes(love.filesystem.load("songs/brimstone/hard.lua")())
+		weeksBrimBF:generateNotes("songs/brimstone/chart.json")
+        weeksBrimEnemy:generateNotes("songs/brimstone/chart.json")
 	end,
 
 	update = function(self, dt)

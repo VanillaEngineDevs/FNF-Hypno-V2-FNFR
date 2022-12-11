@@ -81,6 +81,10 @@ return {
 		boyfriend.x, boyfriend.y = pil.x-175, pil.y+100
 		boyfriend.sizeX, boyfriend.sizeY = 0.75, 0.75
 
+		enemy.colours = {175,102,206}		
+		boyfriend.colours = {183,216,85}
+
+
 		dawn = {
 			body = love.filesystem.load("sprites/characters/dawn-atlas/body.lua")(),
 			leftarm = love.filesystem.load("sprites/characters/dawn-atlas/arm-left.lua")(),
@@ -112,8 +116,8 @@ return {
 	load = function(self)
 		dtWeek:load()
 
-		inst = love.audio.newSource("songs/death-toll/Inst.ogg", "stream")
-		voices = love.audio.newSource("songs/death-toll/Voices.ogg", "stream")
+		inst = waveAudio:newSource("songs/death-toll/Inst.ogg", "stream")
+		voices = waveAudio:newSource("songs/death-toll/Voices.ogg", "stream")
 
 		self:initUI()
 
@@ -123,7 +127,7 @@ return {
 	initUI = function(self)
 		dtWeek:initUI()
 
-		dtWeek:generateNotes(love.filesystem.load("songs/death-toll/hard.json")())
+		dtWeek:generateNotes("songs/death-toll/hard.json")
 	end,
 
 	update = function(self, dt)

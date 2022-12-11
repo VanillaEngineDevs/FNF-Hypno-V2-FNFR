@@ -27,12 +27,16 @@ return {
 		usePendulum = true
 
 		self:load()
+
+		enemy.colours = {175,102,206}		
+		boyfriend.colours = {183,216,85}
+
 	end,
 
 	load = function(self)
 		weeksPasta1:load()
-		inst = love.audio.newSource("songs/pasta-night/Inst.ogg", "stream")
-		voices = love.audio.newSource("songs/pasta-night/Voices.ogg", "stream")
+		inst = waveAudio:newSource("songs/pasta-night/Inst.ogg", "stream")
+		voices = waveAudio:newSource("songs/pasta-night/Voices.ogg", "stream")
 		self:initUI()
 		weeksPasta1:setupCountdown()
 	end,
@@ -41,9 +45,9 @@ return {
 		weeksPasta1:initUI()
         weeksPasta2:initUI()
         weeksPasta3:initUI()
-		weeksPasta1:generateNotes(love.filesystem.load("songs/pasta-night/hard.lua")())
-        weeksPasta2:generateNotes(love.filesystem.load("songs/pasta-night/hard.lua")())
-        weeksPasta3:generateNotes(love.filesystem.load("songs/pasta-night/hard.lua")())
+		weeksPasta1:generateNotes("songs/pasta-night/chart.json")
+        weeksPasta2:generateNotes("songs/pasta-night/chart.json")
+        weeksPasta3:generateNotes("songs/pasta-night/chart.json")
 	end,
 
 	update = function(self, dt)

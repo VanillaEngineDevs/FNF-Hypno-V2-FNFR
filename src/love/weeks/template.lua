@@ -33,8 +33,8 @@ return {
 
 	load = function(self)
 		weeks:load()
-		inst = love.audio.newSource("songs/song/Inst.ogg", "stream")
-		voices = love.audio.newSource("songs/song/Voices.ogg", "stream")
+		inst = waveAudio:newSource("songs/song/Inst.ogg", "stream")
+		voices = waveAudio:newSource("songs/song/Voices.ogg", "stream")
 		self:initUI()
 		weeks:setupCountdown()
 	end,

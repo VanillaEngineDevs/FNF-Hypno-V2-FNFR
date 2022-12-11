@@ -226,8 +226,8 @@ return {
 					currentWeek = currentWeek - 1
 					weekNum = weekNum - 1
 				else
-					currentWeek = 7
-					weekNum = 8
+					currentWeek = 8
+					weekNum = 9
 				end
 				if freeplayColours[weekNum] then colourTween() else colourTweenAlt() end
 				menuFunc()

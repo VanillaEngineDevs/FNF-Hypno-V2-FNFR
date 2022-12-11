@@ -44,14 +44,14 @@ return {
 		stages["stage"]:load()
 
 		if song == 3 then
-			inst = love.audio.newSource("songs/week1/dadbattle/inst.ogg", "stream")
-			voices = love.audio.newSource("songs/week1/dadbattle/voices.ogg", "stream")
+			inst = waveAudio:newSource("songs/week1/dadbattle/inst.ogg", "stream")
+			voices = waveAudio:newSource("songs/week1/dadbattle/voices.ogg", "stream")
 		elseif song == 2 then
-			inst = love.audio.newSource("songs/week1/fresh/inst.ogg", "stream")
-			voices = love.audio.newSource("songs/week1/fresh/voices.ogg", "stream")
+			inst = waveAudio:newSource("songs/week1/fresh/inst.ogg", "stream")
+			voices = waveAudio:newSource("songs/week1/fresh/voices.ogg", "stream")
 		else
-			inst = love.audio.newSource("songs/week1/bopeebo/inst.ogg", "stream")
-			voices = love.audio.newSource("songs/week1/bopeebo/voices.ogg", "stream")
+			inst = waveAudio:newSource("songs/week1/bopeebo/inst.ogg", "stream")
+			voices = waveAudio:newSource("songs/week1/bopeebo/voices.ogg", "stream")
 		end
 
 		self:initUI()

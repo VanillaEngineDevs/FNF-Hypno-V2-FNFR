@@ -62,6 +62,10 @@ return {
 		jumpscareOne.x, jumpscareOne.y = 650, 300
 		jumpscareTwo.x, jumpscareTwo.y = 650, 300
 
+		enemy.colours = {175,102,206}		
+		boyfriend.colours = {183,216,85}
+
+
 
 		self:load()
 
@@ -111,8 +115,8 @@ return {
 		celebiThree = false
 		weeksMono:load()
 
-		inst = love.audio.newSource("songs/monochrome/inst.ogg", "stream")
-		voices = love.audio.newSource("songs/monochrome/voices.ogg", "stream")
+		inst = waveAudio:newSource("songs/monochrome/inst.ogg", "stream")
+		voices = waveAudio:newSource("songs/monochrome/voices.ogg", "stream")
 
 		self:initUI()
 
@@ -138,7 +142,7 @@ return {
 	initUI = function(self)
 		weeksMono:initUI()
 
-		weeksMono:generateNotes(love.filesystem.load("songs/monochrome/monochrome.lua")())
+		weeksMono:generateNotes("songs/monochrome/chart.json")
 
 		print("unitUI")
 	end,

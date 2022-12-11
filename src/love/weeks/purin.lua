@@ -76,6 +76,10 @@ return {
 			end)
 		end
 
+		enemy.colours = {175,102,206}		
+		boyfriend.colours = {183,216,85}
+
+
 		LMFAO_SHE_FUCKING_DIED()
 
 

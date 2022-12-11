@@ -57,6 +57,10 @@ return {
 
 		enemyIcon:animate("daddy dearest", false)
 
+		enemy.colours = {175,102,206}		
+		boyfriend.colours = {183,216,85}
+
+
 		self:load()
 
         grayscaleAmount = {1}
@@ -69,8 +73,8 @@ return {
 	load = function(self)
 		weeksMissingno:load()
 
-		inst = love.audio.newSource("songs/missingno/inst.ogg", "stream")
-		voices = love.audio.newSource("songs/missingno/voices.ogg", "stream")
+		inst = waveAudio:newSource("songs/missingno/inst.ogg", "stream")
+		voices = waveAudio:newSource("songs/missingno/voices.ogg", "stream")
 
 		self:initUI()
 
@@ -90,7 +94,7 @@ return {
 	initUI = function(self)
 		weeksMissingno:pixelInitUI()
 
-		weeksMissingno:generateNotes(love.filesystem.load("songs/missingno/missingno-hard.lua")())
+		weeksMissingno:generateNotes("songs/missingno/chart.json")
 	end,
 
 	update = function(self, dt)

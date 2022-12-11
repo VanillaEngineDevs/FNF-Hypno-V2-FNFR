@@ -32,6 +32,10 @@ return {
 
 		enemyIcon:animate("daddy dearest", false)
 
+		enemy.colours = {175,102,206}		
+		boyfriend.colours = {183,216,85}
+
+
 		self:load()
 	end,
 
@@ -39,8 +43,8 @@ return {
 		weeks:load()
 
 		if song == 3 then
-			inst = love.audio.newSource("songs/lost-cause/Inst.ogg", "stream")
-			voices = love.audio.newSource("songs/lost-cause/Voices.ogg", "stream")
+			inst = waveAudio:newSource("songs/lost-cause/Inst.ogg", "stream")
+			voices = waveAudio:newSource("songs/lost-cause/Voices.ogg", "stream")
 			bg = graphics.newImage(love.graphics.newImage(graphics.imagePath("cave/cave")))
 			playerBoy = love.filesystem.load("sprites/characters/omgboyfriendareyoudead.lua")()
 			boyfriend = love.filesystem.load("sprites/characters/GF-final.lua")()
@@ -61,14 +65,14 @@ return {
 			treeForeground = nil
 			midground = nil
 		elseif song == 2 then
-			inst = love.audio.newSource("songs/left-unchecked/Inst.ogg", "stream")
-			voices = love.audio.newSource("songs/left-unchecked/Voices.ogg", "stream")
+			inst = waveAudio:newSource("songs/left-unchecked/Inst.ogg", "stream")
+			voices = waveAudio:newSource("songs/left-unchecked/Voices.ogg", "stream")
 			midground = graphics.newImage(love.graphics.newImage(graphics.imagePath("alley/MIDGROUND BLOOD"))) -- switch to blood midground on song 2
 			enemy = love.filesystem.load("sprites/characters/Hypno-2.lua")()
 			enemy.x, enemy.y = -425, 50
 		else
-			inst = love.audio.newSource("songs/safety-lullaby/Inst.ogg", "stream")
-			voices = love.audio.newSource("songs/safety-lullaby/Voices.ogg", "stream")
+			inst = waveAudio:newSource("songs/safety-lullaby/Inst.ogg", "stream")
+			voices = waveAudio:newSource("songs/safety-lullaby/Voices.ogg", "stream")
 		end
 
 		self:initUI()
@@ -80,11 +84,11 @@ return {
 		weeks:initUI()
 
 		if song == 3 then
-			weeks:generateNotes(love.filesystem.load("songs/lost-cause/hard.lua")())
+			weeks:generateNotes("songs/lost-cause/chart.json")
 		elseif song == 2 then
-			weeks:generateNotes(love.filesystem.load("songs/left-unchecked/hard.lua")())
+			weeks:generateNotes("songs/left-unchecked/chart.json")
 		else
-			weeks:generateNotes(love.filesystem.load("songs/safety-lullaby/hard.lua")())
+			weeks:generateNotes("songs/safety-lullaby/chart.json")
 		end
 	end,
 
