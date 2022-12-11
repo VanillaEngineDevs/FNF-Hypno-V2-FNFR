@@ -123,7 +123,7 @@ return {
 	initUI = function(self)
 		dtWeek:initUI()
 
-		dtWeek:generateNotes(love.filesystem.load("songs/death-toll/hard.lua")())
+		dtWeek:generateNotes(love.filesystem.load("songs/death-toll/hard.json")())
 	end,
 
 	update = function(self, dt)

@@ -86,7 +86,7 @@ return {
 
 	initUI = function(self)
 		weeksFrost:initUI()
-		weeksFrost:generateNotes(love.filesystem.load("songs/frostbite/chart.lua")())
+		weeksFrost:generateNotes("songs/purin/chart.json")
 	end,
 
 	update = function(self, dt)
