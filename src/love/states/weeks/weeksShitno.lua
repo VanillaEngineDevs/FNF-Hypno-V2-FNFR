@@ -1297,12 +1297,16 @@ return {
 					else self:safeAnimate(enemy, "idle", false, 2) end
 				end
 				if spriteTimers[3] == 0 then
-					if cold and boyfriend:getAnimName() ~= "coldTalk" and boyfriend:getAnimName() ~= "turn" then
-						self:safeAnimate(boyfriend, "coldidle", false, 3)
-					elseif boyfriend:getAnimName() ~= "coldTalk1" and boyfriend:getAnimName() ~= "coldTalk2" then
-						self:safeAnimate(boyfriend, "idle", false, 3)
+					if cold then
+						if (boyfriend:getAnimName() ~= "coldTalk") and (boyfriend:getAnimName() ~= "turn") then
+							self:safeAnimate(boyfriend, "coldidle", false, 3)
+						end
+					else
+						if boyfriend:getAnimName() ~= "talk1" and boyfriend:getAnimName() ~= "talk2" then
+							self:safeAnimate(boyfriend, "idle", false, 3)
+						end
 					end
-				end
+				end   -- H
 			end
 
 			for i = 1, 3 do
@@ -1547,9 +1551,9 @@ return {
 										if not settings.ghostTapping or success then
 											boyfriendArrow:animate("confirm", false)
 
-											if cold then										
+											if cold then
 												self:safeAnimate(boyfriend, "cold" .. curAnim, false, 3)
-											else									
+											else
 												self:safeAnimate(boyfriend, curAnim, false, 3)
 											end
 											doingAnim = false
@@ -1586,9 +1590,9 @@ return {
 										if girlfriend:isAnimName("sad") then if combo >= 5 then self:safeAnimate(girlfriend, "sad", true, 1) end end
 
 										if cold then
-											self:safeAnimate(boyfriend, "coldmiss" .. curAnim, false, 3)
+											self:safeAnimate(boyfriend, "coldmiss " .. curAnim, false, 3)
 										else
-											self:safeAnimate(boyfriend, "miss" .. curAnim, false, 3)
+											self:safeAnimate(boyfriend, "miss " .. curAnim, false, 3)
 										end
 
 
@@ -1616,12 +1620,10 @@ return {
 
 							boyfriendArrow:animate("confirm", false)
 
-							if (not boyfriend:isAnimated()) or boyfriend:getAnimName() == "idle" then 
-								if cold then 
-									self:safeAnimate(boyfriend, "cold" .. curAnim, true, 3) 
-								else 
-									self:safeAnimate(boyfriend, curAnim, true, 3) 
-								end
+							if cold then
+								if (not boyfriend:isAnimated()) or (boyfriend:getAnimName() == "coldidle") then self:safeAnimate(boyfriend, "cold" .. curAnim, true, 3) end
+							else
+								if (not boyfriend:isAnimated()) or (boyfriend:getAnimName() == "idle") then self:safeAnimate(boyfriend, curAnim, true, 3) end
 							end
 
 							--health = health + 1
@@ -1638,17 +1640,32 @@ return {
 							boyfriendArrow:animate("confirm", false)
 
 							if boyfriendNote[1]:getAnimName() == "hold" or boyfriendNote[1]:getAnimName() == "end" then
-								if (not boyfriend:isAnimated()) or boyfriend:getAnimName() == "idle" then if cold then 
-									self:safeAnimate(boyfriend, "cold" .. curAnim, true, 2) 
-								else 
-									self:safeAnimate(boyfriend, curAnim, true, 2) 
+								if cold then
+									if boyfriendNote[1]:getAnimName() == "hold" or boyfriendNote[1]:getAnimName() == "end" then
+										if (not boyfriend:isAnimated()) or boyfriend:getAnimName() == "coldidle" then self:safeAnimate(boyfriend, "cold" .. curAnim, true, 2) end
+									else
+										self:safeAnimate(boyfriend, "cold" .. curAnim, false, 2)
+									end
+								else
+									if boyfriendNote[1]:getAnimName() == "hold" or boyfriendNote[1]:getAnimName() == "end" then
+										if (not boyfriend:isAnimated()) or boyfriend:getAnimName() == "idle" then self:safeAnimate(boyfriend, curAnim, true, 2) end
+									else
+										self:safeAnimate(boyfriend, curAnim, false, 2)
+									end
 								end
-							end
 							else
 								if cold then
-									self:safeAnimate(boyfriend, "cold" .. curAnim, false, 2)
+									if boyfriendNote[1]:getAnimName() == "hold" or boyfriendNote[1]:getAnimName() == "end" then
+										if (not boyfriend:isAnimated()) or boyfriend:getAnimName() == "coldidle" then self:safeAnimate(boyfriend, "cold" .. curAnim, true, 2) end
+									else
+										self:safeAnimate(boyfriend, "cold" .. curAnim, false, 2)
+									end
 								else
-									self:safeAnimate(boyfriend, curAnim, false, 2)
+									if boyfriendNote[1]:getAnimName() == "hold" or boyfriendNote[1]:getAnimName() == "end" then
+										if (not boyfriend:isAnimated()) or boyfriend:getAnimName() == "idle" then self:safeAnimate(boyfriend, curAnim, true, 2) end
+									else
+										self:safeAnimate(boyfriend, curAnim, false, 2)
+									end
 								end
 								score = score + 350
 								addJudgements("sickPlus")

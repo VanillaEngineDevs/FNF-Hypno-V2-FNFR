@@ -80,6 +80,9 @@ return {
 			weeks:safeAnimate(girlfriend, "cheer", false, 1)
 		end
 
+
+		-- this is the password to one of my alt accounts 💀💀💀💀
+
 		if health >= 80 then
 			if enemyIcon:getAnimName() == "daddy dearest" then
 				enemyIcon:animate("daddy dearest losing", false)

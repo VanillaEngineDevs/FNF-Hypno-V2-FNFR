@@ -139,6 +139,80 @@ return {
 		end
 		totalScore = 0
 
+		phrases = {
+			"IM DEAD",
+			"EERIE NOISE",
+			"LEAVE HURRY",
+			"HE DIED",
+			"DYING",
+			"PERISH SONG",
+			"GOLD",
+			"SILVER",
+			"DONT BELONG",
+			"ABANDONED",
+			"BOO",
+			"UNOWN",
+			"NOT WANTED",
+			"TIRESOME",
+			"USELESS",
+			"GRUESOME",
+			"NIGHTMARE",
+			"GET OUT",
+			"HOPELESS",
+			"RUN",
+			"NOT WELCOME",
+			"CAN YOU SEE?",
+			"WHERE?",
+			"HELP",
+			"RELIVE",
+			"XXXXX",
+			"GOODBYE",
+			"CELEBI DIED",
+			"IT FAILED",
+			"AGONY",
+			"I SEE YOU"
+		}
+		rareWords = {
+			"NICE COCK",
+			"SUS AF",
+			"BOOB LOL",
+			"LMAO GOTTEM",
+			"RUN STREAMER",
+			"FUN STREAMER",
+			"RATIO",
+			"GOO",
+			"POGGERS",
+			"BUSSY"
+		}
+		impossibleWords = {
+			"WANNA WORK ON MY FNF MOD?",
+			"IM IN A FUCKING WHEEL CHAIR",
+			"BUT DURING THE STONE AGE",
+			"HIS MOUTH IS NOT A PUSSY",
+			"FEAR OF THE UNOWN",
+			"HAIL TO THE KING"
+		}
+		harderWords = {
+			"FERALIGATR",
+			"CYNDAQUIL",
+			"TYPHLOSION",
+			"HIPPOPOTAMUS",
+			"FORGOTTEN",
+			"FRUSTRATION",
+			"DECAPITATION",
+			"NOT YOUR FATE",
+			"HOLLOWED AND EMPTY",
+			"POSSESSION",
+			"MELANCHOLY",
+			"MONOTONY",
+			"TOMBSTONE",
+			"THE END OF ALL THINGS",
+			"DEATH TO GLORY",
+			"LOST MEMORIES",
+			"WHO ARE YOU KID?",
+			"ASPHYXIATION"
+		}
+
 		botplayAlpha = {1}
 		botplayY = -100
 
@@ -182,6 +256,8 @@ return {
 				numbers = love.graphics.newImage(graphics.imagePath("numbers")),
 				rating = love.graphics.newImage(graphics.imagePath("rating")),
 			}
+			unownimg = love.graphics.newImage(graphics.imagePath("ui/Unown_Alphabet"))
+			unownSpr = love.filesystem.load("sprites/Unown_Alphabet.lua")
 	
 			sprites = {
 				icons = love.filesystem.load("sprites/icons.lua"),
@@ -1057,6 +1133,41 @@ return {
 				)
 			end
 		)
+	end,
+
+	choosePhrase = function(self)
+		choice = love.math.random(1, 50)
+
+		if not afterTear then
+			if choice < 40 then
+				text = self:makeText(phrases[love.math.random(1, #phrases)])
+			elseif choice < 45 then
+				text = self:makeText(rareWords[love.math.random(1,#rareWords)])
+
+			end
+		else
+			text = self:makeText(harderWords[love.math.random(1, #harderWords)])
+		end
+	end,
+
+	makeText = function(self, phrase)
+		text = {}
+		for i = 1, #phrase do 
+			char = string.lower(phrase:sub(i,i))
+			if char == " " then 
+			else
+				table.insert(text, unownSpr())
+				text[#text]:animate(char)
+				text[#text].sizeX, text[#text].sizeY = 0.35, 0.35
+				text[#text].x = -350 + 64 * i
+			end
+		end
+		return text
+	end,
+
+	unownText = function(self)
+		doText = true
+		text = self:makeText(phrases[love.math.random(1, #phrases)])
 	end,
 
 	setIcon = function(self, icon, name)

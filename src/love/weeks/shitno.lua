@@ -101,6 +101,9 @@ return {
 			end
 		end
 
+
+
+		--print(cold)
 		if musicTime >= 7333.33333333333 and musicTime < 7358.33333333333 then 
 			--boyfriend:animate("coldTalk", false)
 
